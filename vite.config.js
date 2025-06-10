@@ -1,12 +1,12 @@
-import { defineConfig } from "vite";
-import { sveltekit } from "@sveltejs/kit/vite";
+import { sveltekit } from "@sveltejs/kit/vite"; // Importa o plugin SvelteKit para Vite
+import { defineConfig } from "vite"; // Importa a função defineConfig do Vite
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-	plugins: [sveltekit()],
+	plugins: [sveltekit()], // Add Tailwind CSS plugin here
 
 	// Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
 	//
