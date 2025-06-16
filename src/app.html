@@ -6,6 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Tauri + SvelteKit + Typescript App</title>
 		%sveltekit.head%
+		<script lang="ts">
+			import { invoke } from "@tauri-apps/api/tauri";
+		</script>
+
+		<TradeTicket />
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>

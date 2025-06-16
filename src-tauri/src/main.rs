@@ -1,16 +1,18 @@
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
-use serde_json::Value;
-use tauri::command;
-
-#[command]
-fn salvar_ordem(ordem: Value) {
-    println!("📦 Ordem recebida: {:?}", ordem);
+#[tauri::command]
+async fn trade_action(action: String, quantity: u32) -> String {
+    // Simulação de resposta
+    match action.as_str() {
+        "buy" => format!("Enviada ordem de COMPRA de {} contratos", quantity),
+        "sell" => format!("Enviada ordem de VENDA de {} contratos", quantity),
+        "close" => "Enviada ordem de ZERAGEM de posição".to_string(),
+        _ => "Ação desconhecida".to_string()
+    }
 }
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![salvar_ordem])
+        .invoke_handler(tauri::generate_handler![trade_action])
         .run(tauri::generate_context!())
-        .expect("Erro ao iniciar o app Tauri");
+        .expect("erro ao iniciar app");
 }
+
